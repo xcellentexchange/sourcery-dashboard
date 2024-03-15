@@ -66,7 +66,8 @@ watchEffect(() => {
             @click="print()"
             class="inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-2.5 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-white disabled:text-slate-200"
           >
-            <PrinterIcon class="h-6 w-6" alt="Print" />
+            <!-- <PrinterIcon class="h-6 w-6" alt="Print" /> -->
+            Print
           </button>
         </div>
       </div>
