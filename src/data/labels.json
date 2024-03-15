@@ -1,0 +1,16 @@
+[
+  {
+    "type": "Large",
+    "dimensions": {
+      "width": 4,
+      "height": 2.3125
+    }
+  },
+  {
+    "type": "Small",
+    "dimensions": {
+      "width": 1.5,
+      "height": 1.5
+    }
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "name": "sourcery-dashboard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vuepic/vue-datepicker": "^4.2.3",
+    "axios": "^1.2.3",
+    "bwip-js": "^4.1.1",
+    "date-fns": "^2.29.3",
+    "jose": "^4.13.1",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "luxon": "^3.1.1",
+    "pinia": "^2.0.16",
+    "v-calendar": "^3.0.2",
+    "vue": "^3.2.25",
+    "vue-router": "^4.1.2",
+    "vue3-google-login": "^2.0.11",
+    "vue3-google-signin": "^1.2.1"
+  },
+  "devDependencies": {
+    "@headlessui/vue": "^1.7.3",
+    "@heroicons/vue": "^2.0.18",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.8",
+    "@vitejs/plugin-vue": "^2.3.4",
+    "@vueuse/core": "^9.6.0",
+    "@vueuse/integrations": "^9.10.0",
+    "autoprefixer": "^10.4.12",
+    "cssnano": "^5.1.13",
+    "dotenv": "^16.0.3",
+    "prettier": "^2.8.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "sass": "^1.56.2",
+    "sass-loader": "^13.2.0",
+    "tailwindcss": "^3.2.1",
+    "vite": "^2.9.5",
+    "vite-svg-loader": "^3.4.0"
+  }
+}

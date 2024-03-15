@@ -1,0 +1,7 @@
+export { default as HomeView } from './HomeView.vue'
+export { default as LoginView } from './LoginView.vue'
+export { default as LogoutView } from './LogoutView.vue'
+export { default as TransparencyView } from './TransparencyView.vue'
+export { default as SignatureView } from './SignatureView.vue'
+export { default as GoalsView } from './GoalsView.vue'
+export { default as ProfileView } from './ProfileView.vue'

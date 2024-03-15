@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_2" viewBox="0 0 94 95">
+  <defs>
+    <path id="reuse-0" d="M0 0h94v95H0z" class="cls-1"/>
+  </defs>
+  <defs>
+    <clipPath id="clippath">
+      <path d="M15.6 0h15.6v15.6H15.6z" class="cls-1"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <path d="M0 15.6h15.6v15.6H0z" class="cls-1"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <use xlink:href="#reuse-0" class="cls-1"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <path fill="none" d="M93.7 0H46.8v15.6h15.7v15.5h31.2V0z" clip-path="url(#clippath-2)"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <use xlink:href="#reuse-0" class="cls-1"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <path fill="none" d="M46.8 31.1V15.6H31.2V31h15.6v15.6H31.2v45.7L41 74.7c.2-.5 1-1.8 2.1-1.7.9 0 1.6.7 1.6 1.6 0 2.8 1.4 5.4 3.7 7l1 .5c1.2.5 2.4.8 3.7.8h1l.7-.2h.4l.4-.1.5-.2.4-.1.4-.2.2-.1.4-.2c3-1.5 5-4.6 5-8V31.1H46.9Z" clip-path="url(#clippath-4)"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <use xlink:href="#reuse-0" class="cls-1"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <path fill="none" d="m48 86.7 3.2-1.7c-4.5-.8-8-4.3-8.7-8.8l-10 18.5c3.6-1.6 10-5 15.6-8Z" clip-path="url(#clippath-6)"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2">
+    <g clip-path="url(#clippath)">
+      <path d="M10.6-5h25.6v25.6H10.6z"/>
+    </g>
+    <g clip-path="url(#clippath-1)">
+      <path d="M-5 10.6h25.6v25.6H-5z"/>
+    </g>
+    <g clip-path="url(#clippath-3)">
+      <path d="M41.8-5h56.8v41.1H41.8z"/>
+    </g>
+    <g clip-path="url(#clippath-5)">
+      <path d="M26.2 10.6h41.2v86.8H26.2z"/>
+    </g>
+    <g clip-path="url(#clippath-7)">
+      <path d="M27.4 71.2h28.8v28.5H27.4z"/>
+    </g>
+  </g>
+</svg>
