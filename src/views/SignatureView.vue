@@ -66,6 +66,20 @@ const companies = [
       },
     },
   },
+  {
+    id: 5,
+    name: 'Crate Collective',
+    logo: { full: `${baseUrl}/logo/ccl_icon.png`, icon: `${baseUrl}/logo/ccl_icon.png` },
+    websites: ['cratecollective.com'],
+    emailDomain: 'cratecollective.com',
+    style: {
+      color: {
+        primary: '#000',
+        secondary: '#000',
+        tertiary: '#000',
+      },
+    },
+  },
 ]
 
 const selectedCompany = ref(companies[1])
