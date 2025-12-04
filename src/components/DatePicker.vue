@@ -7,6 +7,16 @@ import DropDown from './DropDown.vue'
 import { useDates } from '../composables/useDates'
 import { useTimeIntervals } from '@/composables/useTimeIntervals'
 
+const props = defineProps({
+  initialRange: Object,
+  view: String,
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+})
+
 const { timezone, config, views, presets } = useDates()
 const { setTimeInterval, timeIntervalOptions, timeInterval } = useTimeIntervals()
 const range = ref(props.initialRange)
@@ -35,16 +45,6 @@ const cancelRange = () => {
   selectRange({ mode: 'select', value: props.initialRange })
   calendar.value.hidePopover()
 }
-
-const props = defineProps({
-  initialRange: Object,
-  view: String,
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-})
 
 const attr = {
   highlight: {

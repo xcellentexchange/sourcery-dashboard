@@ -2,6 +2,19 @@
 import { ExclamationTriangleIcon, XCircleIcon, CheckCircleIcon, XMarkIcon, InformationCircleIcon } from '@heroicons/vue/24/outline'
 import { ref, computed, onMounted } from 'vue'
 
+const props = defineProps({
+  id: { type: String, required: true },
+  type: {
+    type: String,
+    default: 'info',
+    required: false,
+  },
+  title: { type: String, default: '', required: false },
+  message: { type: String, default: 'Ooops! A message was not provided.', required: false },
+  autoClose: { type: Boolean, default: true, required: false },
+  duration: { type: Number, default: 5, required: false },
+})
+
 const timer = ref(-1)
 const startedAt = ref(0)
 const delay = ref(0)
@@ -28,19 +41,6 @@ const toastIcon = computed(() => {
 })
 
 const close = () => emit('close')
-
-const props = defineProps({
-  id: { type: String, required: true },
-  type: {
-    type: String,
-    default: 'info',
-    required: false,
-  },
-  title: { type: String, default: '', required: false },
-  message: { type: String, default: 'Ooops! A message was not provided.', required: false },
-  autoClose: { type: Boolean, default: true, required: false },
-  duration: { type: Number, default: 5, required: false },
-})
 
 const emit = defineEmits(['close'])
 </script>

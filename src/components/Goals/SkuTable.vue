@@ -1,93 +1,122 @@
 <script setup>
-import { ref, computed, watchEffect } from 'vue'
-import { DateTime } from 'luxon'
-import SkuTableSkeleton from './SkuTableSkeleton.vue'
-import SkuRow from './SkuRow.vue'
-import DropDown from '../DropDown.vue'
-import DatePicker from '../DatePicker.vue'
-import { useTimeIntervals } from '@/composables/useTimeIntervals'
-import { useSalesData } from '@/composables/useSalesData'
-import { useDates } from '@/composables/useDates'
-import { useFormatter } from '@/composables/useFormatter'
+import { DateTime } from "luxon";
+import { computed, ref, watch } from "vue";
+import { useDates } from "@/composables/useDates";
+import { useFormatter } from "@/composables/useFormatter";
+import { useSalesData } from "@/composables/useSalesData";
+import { useTimeIntervals } from "@/composables/useTimeIntervals";
+import DatePicker from "../DatePicker.vue";
+import DropDown from "../DropDown.vue";
+import SkuRow from "./SkuRow.vue";
+import SkuTableSkeleton from "./SkuTableSkeleton.vue";
+
 // import GoalStats from './GoalStats.vue'
 
-const brand = ref(null)
+const brand = ref(null);
 // const brand = ref('Vitalití')
 
-const { timeInterval } = useTimeIntervals()
-const { getSalesData, salesData, loading: salesDataLoading } = useSalesData()
-const { presets } = useDates()
+const { timeInterval } = useTimeIntervals();
+const { getSalesData, salesData, loading: salesDataLoading } = useSalesData();
+const { presets } = useDates();
 
-const range = ref(JSON.parse(presets.find((preset) => preset.name === 'This Year').value))
+const range = ref(
+	JSON.parse(presets.find((preset) => preset.name === "This Year").value),
+);
 // const range = ref(JSON.parse(presets.find((preset) => preset.name === 'Yesterday').value))
 
 const formatWeek = ({ interval: week, year }) => {
-  if (week === 0) {
-    ;(week = 52), (year = --year)
-  }
-  const dt = DateTime.fromObject({
-    weekYear: year,
-    weekNumber: week,
-  })
-  return `${dt.startOf('week').toFormat(`MM/dd/yy`)}-${dt.endOf('week').toFormat(`MM/dd/yy`)}`
-}
+	if (week === 0) {
+		(week = 52), (year = --year);
+	}
+	const dt = DateTime.fromObject({
+		weekYear: year,
+		weekNumber: week,
+	});
+	return `${dt.startOf("week").toFormat(`MM/dd/yy`)}-${dt.endOf("week").toFormat(`MM/dd/yy`)}`;
+};
 
 const formatMonth = ({ interval: month, year }) => {
-  const dt = DateTime.fromObject({
-    month,
-    year,
-  })
-  return `${dt.startOf('month').toFormat(`MMM yyyy`)}`
-}
+	const dt = DateTime.fromObject({
+		month,
+		year,
+	});
+	return `${dt.startOf("month").toFormat(`MMM yyyy`)}`;
+};
 
 const formatInterval = ({ interval, year }) => {
-  if (timeInterval.value.value === 'week') return formatWeek({ interval, year })
-  else return formatMonth({ interval, year })
-}
+	if (timeInterval.value.value === "week")
+		return formatWeek({ interval, year });
+	else return formatMonth({ interval, year });
+};
 
 const brands = computed(() => [
-  ...[{ name: 'All Brands', value: null }],
-  ...Array.from(new Set(salesData.value.map((sku) => JSON.stringify({ name: sku.brand, value: sku.brand }))), JSON.parse),
-])
-const filteredData = computed(() => salesData.value.filter((product) => product.brand.includes(brand.value || '')))
+	...[{ name: "All Brands", value: null }],
+	...Array.from(
+		new Set(
+			salesData.value.map((sku) =>
+				JSON.stringify({ name: sku.brand, value: sku.brand }),
+			),
+		),
+		JSON.parse,
+	),
+]);
+const filteredData = computed(() =>
+	salesData.value.filter((product) =>
+		product.brand.includes(brand.value || ""),
+	),
+);
 const dates = computed(() =>
-  Array.from(
-    new Set(
-      filteredData.value
-        .reduce(
-          (skus, sku) =>
-            skus.concat(
-              sku.dates.map((date) => {
-                return { [timeInterval.value.value]: date[timeInterval.value.value], year: date.year }
-              })
-            ),
-          []
-        )
-        .map(JSON.stringify)
-    ),
-    JSON.parse
-  ).sort((a, b) => {
-    const compFn = (date) => `${date.year}${date[timeInterval.value.value].toString().padStart(2, 0)}`
-    return compFn(a) - compFn(b)
-  })
-)
+	Array.from(
+		new Set(
+			filteredData.value
+				.reduce(
+					(skus, sku) =>
+						skus.concat(
+							sku.dates.map((date) => {
+								return {
+									[timeInterval.value.value]: date[timeInterval.value.value],
+									year: date.year,
+								};
+							}),
+						),
+					[],
+				)
+				.map(JSON.stringify),
+		),
+		JSON.parse,
+	).sort((a, b) => {
+		const compFn = (date) =>
+			`${date.year}${date[timeInterval.value.value].toString().padStart(2, 0)}`;
+		return compFn(a) - compFn(b);
+	}),
+);
 const historicalRevenue = computed(() =>
-  filteredData.value.reduce((a, c) => {
-    a += c.dates.map((date) => date.revenue).reduce((aa, cc) => aa + cc)
-    return a
-  }, 0)
-)
+	filteredData.value.reduce((a, c) => {
+		a += c.dates.map((date) => date.revenue).reduce((aa, cc) => aa + cc);
+		return a;
+	}, 0),
+);
 
-const totalRevenue = ref(0)
-const updateRevenue = (value) => (totalRevenue.value += value)
+const totalRevenue = ref(0);
+const updateRevenue = (value) => {
+	totalRevenue.value += value;
+};
 
-const tableScrolled = ref(false)
-const tableScroll = (e) => (tableScrolled.value = e.target.scrollLeft > 0)
+const tableScrolled = ref(false);
+const tableScroll = (e) => {
+	tableScrolled.value = e.target.scrollLeft > 0;
+};
 
-watchEffect(() => {
-  console.log(`Running getSalesData with params: {range: ${range.value}, view: ${timeInterval.value.value}}`)
-  getSalesData({ range: range.value, view: timeInterval.value.value })
-})
+watch(
+	[range, () => timeInterval.value.value],
+	([currentRange, currentView]) => {
+		console.log(
+			`Running getSalesData with params: {range: ${JSON.stringify(currentRange)}, view: ${currentView}}`,
+		);
+		getSalesData({ range: currentRange, view: currentView });
+	},
+	{ immediate: true },
+);
 </script>
 <template>
   <div class="flex h-full w-full flex-col">

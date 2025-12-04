@@ -3,16 +3,16 @@ import { toRefs, computed } from 'vue'
 import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/vue/24/outline'
 import { useFormatter } from '@/composables/useFormatter'
 
+const props = defineProps({
+  totalRevenue: Number,
+  historicalRevenue: Number,
+})
+
 const { totalRevenue, historicalRevenue } = toRefs(props)
 
 const percentageDifference = computed(
   () => useFormatter.number(((historicalRevenue.value - totalRevenue.value) / historicalRevenue.value).toFixed(2)) * 100 || 0
 )
-
-const props = defineProps({
-  totalRevenue: Number,
-  historicalRevenue: Number,
-})
 </script>
 <template>
   <div class="mb-6 flex items-center justify-start space-x-4">

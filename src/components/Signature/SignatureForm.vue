@@ -5,6 +5,14 @@ import { ChevronUpDownIcon, CheckIcon, CheckCircleIcon, ExclamationCircleIcon } 
 import DropDown from '../DropDown.vue'
 import { useNotifications } from '@/composables/useNotifications'
 
+const props = defineProps({
+  companies: Array,
+  selectedCompany: Object,
+  preview: [Element, Object],
+  form: Object,
+  fullLogo: Boolean,
+})
+
 const { createNotification } = useNotifications()
 
 const placeholder = {
@@ -44,7 +52,7 @@ let saveTimer
 const saveInfo = ({ notify = true }) => {
   localStorage.setItem('signatureForm', JSON.stringify(props.form))
   clearTimeout(saveTimer)
-  saveTimer = setTimeout(() => (savedInfo.value = false), 1200)
+  saveTimer = setTimeout(() => { savedInfo.value = false }, 1200)
   savedInfo.value = true
   if (notify)
     createNotification({
@@ -91,14 +99,6 @@ const copyMouseUp = (e) => {
 const validForm = computed(
   () => Object.values(inputErrors).filter((e) => e !== null).length === 0 && requiredInputs.value.filter((el) => el.value.trim() === '').length === 0
 )
-
-const props = defineProps({
-  companies: Array,
-  selectedCompany: Object,
-  preview: [Element, Object],
-  form: Object,
-  fullLogo: Boolean,
-})
 </script>
 <template>
   <form action="#" class="space-y-6">

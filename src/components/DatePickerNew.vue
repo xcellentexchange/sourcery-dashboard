@@ -26,6 +26,16 @@ import { useTimeIntervals } from '@/composables/useTimeIntervals'
 
 import colors from 'tailwindcss/colors'
 
+const props = defineProps({
+  initialRange: Object,
+  view: String,
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+})
+
 const { timezone, config, views, presets } = useDates()
 const { setTimeInterval, timeIntervalOptions, timeInterval } = useTimeIntervals()
 const range = ref(Object.values(props.initialRange))
@@ -77,16 +87,6 @@ const cancelRange = () => {
   // selectRange({ mode: 'select', value: props.initialRange })
   // calendar.value.hidePopover()
 }
-
-const props = defineProps({
-  initialRange: Object,
-  view: String,
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-})
 
 const attr = {
   highlight: {

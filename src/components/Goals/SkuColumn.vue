@@ -2,10 +2,6 @@
 import { ref, computed } from 'vue'
 import { useFormatter } from '@/composables/useFormatter'
 
-const calPercentage = (cur, prev) => Math.round(((cur - prev) / prev) * 100)
-
-const hasIndicator = computed(() => (props.best || (props.goal && props.current.quantity < props.goal) ? true : false))
-
 const props = defineProps({
   current: Object,
   previous: {
@@ -24,6 +20,10 @@ const props = defineProps({
     default: false,
   },
 })
+
+const calPercentage = (cur, prev) => Math.round(((cur - prev) / prev) * 100)
+
+const hasIndicator = computed(() => (props.best || (props.goal && props.current.quantity < props.goal) ? true : false))
 </script>
 <template>
   <td :class="['w-auto whitespace-nowrap px-3 py-4 text-center text-sm text-slate-700']">

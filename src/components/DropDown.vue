@@ -3,14 +3,6 @@ import { ref, computed, toRefs } from 'vue'
 import { Combobox, ComboboxInput, ComboboxButton, ComboboxOptions, ComboboxOption } from '@headlessui/vue'
 import { ChevronUpDownIcon, CheckIcon } from '@heroicons/vue/24/outline'
 
-const query = ref('')
-const currentOption = ref(props.currentOption)
-// const options = ref(props.options)
-
-const filteredOptions = computed(() =>
-  query.value === '' ? props.options : props.options.filter((option) => option?.name.toLowerCase().includes(query.value.toLowerCase()))
-)
-
 const props = defineProps({
   options: Array,
   currentOption: String,
@@ -26,6 +18,14 @@ const props = defineProps({
     default: false,
   },
 })
+
+const query = ref('')
+const currentOption = ref(props.currentOption)
+// const options = ref(props.options)
+
+const filteredOptions = computed(() =>
+  query.value === '' ? props.options : props.options.filter((option) => option?.name.toLowerCase().includes(query.value.toLowerCase()))
+)
 </script>
 <template>
   <Combobox as="div" v-model="currentOption" @update:model-value="$emit('update:currentOption', $event)" :disabled="disabled">

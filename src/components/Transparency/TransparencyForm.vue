@@ -5,6 +5,12 @@ import labels from '@/data/labels.json'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxLabel, ComboboxOption, ComboboxOptions } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
+const props = defineProps({
+  product: Object,
+  label: Object,
+  codes: Array,
+})
+
 const productQuery = ref('')
 const filteredProducts = computed(() =>
   productQuery.value === '' ? products : products.filter((product) => product.sku.toLowerCase().includes(productQuery.value.toLowerCase()))
@@ -20,12 +26,6 @@ const selectedLabel = ref(props.label)
 const codes = ref(props.codes)
 const codeInput = ref('')
 const formatCodeInput = (codeInput) => codeInput.split('\n').filter((c) => c !== '')
-
-const props = defineProps({
-  product: Object,
-  label: Object,
-  codes: Array,
-})
 
 const emit = defineEmits(['update:codes', 'update:product', 'update:label'])
 

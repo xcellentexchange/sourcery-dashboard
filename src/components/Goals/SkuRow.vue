@@ -10,6 +10,15 @@ import SkuColumn from './SkuColumn.vue'
 
 import TagElement from '../Elements/TagElement.vue'
 
+const props = defineProps({
+  dates: Array,
+  row: Object,
+  index: Number,
+  tableScrolled: Boolean,
+})
+
+const emit = defineEmits(['updateRevenue'])
+
 const { setGoal, setGoalProperties, goal: annualGoal } = useGoals()
 const { timeInterval } = useTimeIntervals()
 const { setProductAsin, productImage } = useProductImage()
@@ -29,8 +38,14 @@ const dates = computed(() =>
       }
   )
 )
-const averageQuantity = computed(() => (dates.value.reduce((a, c) => (a += c.quantity), 0) / dates.value.length).toFixed(1))
-const averagePrice = computed(() => (skuDates.value.reduce((a, c) => (a += c.revenue / c.quantity), 0) / skuDates.value.length).toFixed(2))
+const averageQuantity = computed(() => {
+  const sum = dates.value.reduce((a, c) => a + c.quantity, 0)
+  return (sum / dates.value.length).toFixed(1)
+})
+const averagePrice = computed(() => {
+  const sum = skuDates.value.reduce((a, c) => a + (c.quantity ? (c.revenue / c.quantity) : 0), 0)
+  return (sum / skuDates.value.length).toFixed(2)
+})
 const averageRevenue = computed(() => averagePrice.value * averageQuantity.value)
 
 const intervalGoal = ref(0)
@@ -58,15 +73,6 @@ watchEffect(() => {
 
 onBeforeUnmount(() => {
   emit('updateRevenue', -annualRevenue.value)
-})
-
-const emit = defineEmits(['updateRevenue'])
-
-const props = defineProps({
-  dates: Array,
-  row: Object,
-  index: Number,
-  tableScrolled: Boolean,
 })
 </script>
 <template>

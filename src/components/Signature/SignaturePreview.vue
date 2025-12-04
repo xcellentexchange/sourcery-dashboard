@@ -1,6 +1,12 @@
 <script setup>
 import { ref, computed, onMounted, watchEffect } from 'vue'
 
+const props = defineProps({
+  selectedCompany: Object,
+  form: Object,
+  fullLogo: Boolean,
+})
+
 const signatureWidth = ref(250)
 const logoWidth = ref(0)
 const logoHeight = ref(0)
@@ -94,12 +100,6 @@ watchEffect(() => {
 
 onMounted(() => {
   normalizeEmail('jason.sims@plethora7.com')
-})
-
-const props = defineProps({
-  selectedCompany: Object,
-  form: Object,
-  fullLogo: Boolean,
 })
 </script>
 <template>
