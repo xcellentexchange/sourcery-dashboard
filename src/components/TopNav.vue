@@ -24,10 +24,10 @@ const navItems = [
     name: 'Email Signature',
     href: '/signature-generator',
   },
-  {
-    name: 'Goals',
-    href: '/goals',
-  },
+  // {
+  //   name: 'Goals',
+  //   href: '/goals',
+  // },
 ]
 
 const userNavigation = [
