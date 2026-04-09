@@ -41,8 +41,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
       lodash:
-        specifier: '>=4.17.23'
-        version: 4.17.23
+        specifier: ^4.18.1
+        version: 4.18.1
       luxon:
         specifier: ^3.1.1
         version: 3.7.2
@@ -1183,8 +1183,8 @@ packages:
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
 
-  lodash@4.17.23:
-    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
   luxon@3.7.2:
     resolution: {integrity: sha512-vtEhXh/gNjI9Yg1u4jX/0YVPMvxzHuGgCm6tC5kZyb08yjGWGnqAjGJvcXbqQR2P3MyMEFnRbpcdFS6PBcLqew==}
@@ -2736,7 +2736,7 @@ snapshots:
 
   lodash.uniq@4.5.0: {}
 
-  lodash@4.17.23: {}
+  lodash@4.18.1: {}
 
   luxon@3.7.2: {}
 
@@ -3221,7 +3221,7 @@ snapshots:
       '@types/resize-observer-browser': 0.1.11
       date-fns: 2.30.0
       date-fns-tz: 2.0.1(date-fns@2.30.0)
-      lodash: 4.17.23
+      lodash: 4.18.1
       vue: 3.5.30
       vue-screen-utils: 1.0.0-beta.13(vue@3.5.30)
 
